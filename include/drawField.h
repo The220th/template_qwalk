@@ -38,18 +38,18 @@ class DrawField : public QWidget
     ~DrawField();
 
     void keyPressEventFU(QKeyEvent *event);
- 
-  private:
-    void paintEvent(QPaintEvent *event);
-    void printLine(const sPoint& p0, const sPoint& p1, QPainter& pen);
-
-    //void drawPoint(const sPoint& p, QPainter& qp, QColor *colo = 0);
+    
     void putPoint(double x, double y, double z);
     void putLine3D(double x1, double y1, double z1, double x2, double y2, double z2);
     void putLine3D(const sPoint& b, const sPoint& e);
 
     void putParallelepiped(const sPoint p1, const sPoint p2);
     void putSphere(const sPoint c, double r);
+ 
+  private:
+    void paintEvent(QPaintEvent *event);
+
+    //void drawPoint(const sPoint& p, QPainter& qp, QColor *colo = 0);
 
 
   protected:

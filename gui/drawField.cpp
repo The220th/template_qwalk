@@ -11,6 +11,8 @@
 #include "../include/sup.h"
 #include "../include/matrix.h"
 
+#include "../include/planner.h"
+
 using namespace std;
 
 DrawField::DrawField(QWidget *parent) : QWidget(parent), cam()
@@ -33,9 +35,7 @@ void DrawField::paintEvent(QPaintEvent *e)
 {
     Q_UNUSED(e);
 
-    putParallelepiped(sPoint(-5, 5, 0), sPoint(5, 10, 5));
-
-    putSphere(sPoint(10, 10, 10), 5);
+    planner_plan(this);
 }
 
 void DrawField::keyPressEventFU(QKeyEvent *event)
@@ -270,7 +270,7 @@ void DrawField::putSphere(const sPoint c, double r)
     // ================Y===================
     hor0 = c.x();
     wer0 = c.z();
-    plan = c.x();
+    plan = c.y();
 
     for (double hor = hor0-r; hor <= hor0+r; hor+=dr)
     {
