@@ -29,9 +29,12 @@ class DrawField : public QWidget
 
     Matrix<double> *C_;
 
+    int **display;
+
     sCamera cam;
 
     void refresh_C_();
+    void refresh_display();
 
   public:
     DrawField(QWidget *parent = 0);

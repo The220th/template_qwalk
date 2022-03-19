@@ -23,19 +23,46 @@ DrawField::DrawField(QWidget *parent) : QWidget(parent), cam()
     C_ = NULL;
     refresh_C_();
 
+    display = new int*[H];
+    for(size_t li = 0; li < H; ++li)
+        display[li] = new int[W];
+    refresh_display();
 }
 
 DrawField::~DrawField()
 {
     if(C_ != NULL)
         delete C_;
+
+    for(size_t li = 0; li < H; ++li)
+        delete display[li];
+    delete display;
 }
  
 void DrawField::paintEvent(QPaintEvent *e)
 {
     Q_UNUSED(e);
 
+    refresh_display();
+
     planner_plan(this);
+
+
+    QPainter qp(this);
+    for(size_t li = 0; li < H; ++li)
+        for(size_t lj = 0; lj < W; ++lj)
+            if(display[li][lj] != 0)
+                qp.drawPoint(lj, li);
+
+    /*
+    QPainter qp(this);
+    for(size_t li = 0; li < H; ++li)
+    {
+        for(size_t lj = 0; lj < W; ++lj)
+            cout << display[li][lj];
+        cout << endl;
+    }*/
+
 }
 
 void DrawField::keyPressEventFU(QKeyEvent *event)
@@ -169,8 +196,9 @@ void DrawField::putPoint(double x, double y, double z)
     // ==========================================
 
 
-    QPainter qp(this);
-    qp.drawPoint(x_res, H-y_res);
+    size_t display_x = (size_t)(x_res+0.5);
+    size_t display_y = (size_t)(y_res+0.5);
+    display[H-1-display_y][display_x] = 1;
 
     return;
 }
@@ -208,6 +236,13 @@ void DrawField::refresh_C_()
     if(C_ != NULL)
         delete C_;
     C_ = new Matrix<double>(C_buff);
+}
+
+void DrawField::refresh_display()
+{
+    for(size_t li = 0; li < H; ++li)
+        for(size_t lj = 0; lj < W; ++lj)
+            display[li][lj] = 0;
 }
 
 /*
