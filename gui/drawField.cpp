@@ -155,7 +155,7 @@ void DrawField::putPoint(double x, double y, double z)
     xp = ((n*x_)/y_);
     zp = ((n*z_)/y_);
 
-    if(xp < -r || zp > r)
+    if(xp < -r || xp > r)
         return;
     if(zp < -t || zp > t)
         return;
@@ -212,15 +212,15 @@ void DrawField::refresh_C_()
 
 /*
 
-p2--> +--------+
-     /        /|
-    /        / |
-   +--------+  |
-   |        |  |
-   | 4      |  +3     
-   |        | /          z| /y
-   |        |/            |/
-  1+--------+2 <-- p1     +--x 
+           +--------+ <--p2
+          /        /|
+         /        / |
+        +--------+  |
+        |        |  |
+        | 4      |  +3     
+        |        | /          z| /y
+        |        |/            |/
+ p1--> 1+--------+2            +--x 
 */
 void DrawField::putParallelepiped(const sPoint p1, const sPoint p2)
 {

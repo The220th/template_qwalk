@@ -17,9 +17,9 @@ class DrawField : public QWidget
   //Q_OBJECT
 
   private:
-    const unsigned W = 1280/*600*/;
-    const unsigned H = 720/*400*/;
-    const double aspect = W / H;
+    const size_t W = 1280/*600*/;
+    const size_t H = 720/*400*/;
+    const double aspect = (double)W / (double)H;
 
     const double n = 1;
     const double f = 10000;

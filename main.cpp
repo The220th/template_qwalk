@@ -13,7 +13,7 @@ int main(int argc, char *argv[])
     //SettingPanel window;
     MainWindow window;
 
-    window.setWindowTitle("lab2");
+    window.setWindowTitle("qwalk");
     window.resize(1280, 720);
     window.setWindowIcon(QIcon("./imgsrc/ico.png"));
 
