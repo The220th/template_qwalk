@@ -5,7 +5,7 @@
 #include <QWidget>
 #include <QMouseEvent>
 
-#include <list>
+#include <cmath>
 
 #include "../include/sPoint.h"
 #include "../include/sCamera.h"
@@ -24,7 +24,7 @@ class DrawField : public QWidget
     const double n = 1;
     const double f = 10000;
     const double fov = 90;
-    const double t = /* n*tg*(fov/2)  */n * 1; // top
+    const double t = /* n*tg*(fov/2)  */n * tan(fov/2); // top
     const double r = t*aspect;                //right
 
     Matrix<double> *C_;
